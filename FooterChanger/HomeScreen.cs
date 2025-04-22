@@ -1,3 +1,5 @@
+using FooterChanger.Helpers;
+
 namespace FooterChanger;
 
 public partial class HomeScreen : Form
@@ -8,6 +10,7 @@ public partial class HomeScreen : Form
         InitializeComponent();
         _treeView!.BeforeExpand += _treeView_BeforeExpand!;
         _treeView!.AfterSelect += _treeView_AfterSelect!;
+        
     }
 
     private void HomeScreen_Load(object sender, EventArgs e)
@@ -23,6 +26,7 @@ public partial class HomeScreen : Form
                 Properties.Settings.Default.Save();
                 savedPath = dialog.SelectedPath;
                 LoadDirectory(savedPath);
+                
             }
         }
         else
@@ -91,6 +95,7 @@ public partial class HomeScreen : Form
             {
                 Tag = subFile,
                 ForeColor = Color.WhiteSmoke,
+                
                 ImageIndex = 1
             };
             
