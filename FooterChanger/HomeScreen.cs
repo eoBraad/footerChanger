@@ -110,4 +110,16 @@ public partial class HomeScreen : Form
             node.Nodes.Add(fileNode);
         }
     }
+
+    private void changeFolder_Click(object sender, EventArgs e)
+    {
+        using var dialog = new FolderBrowserDialog();
+        if (dialog.ShowDialog() == DialogResult.OK)
+        {
+            Properties.Settings.Default.DefaultDirectory = dialog.SelectedPath;
+            Properties.Settings.Default.Save();
+            var savedPath = dialog.SelectedPath;
+            LoadDirectory(savedPath);
+        }
+    }
 }
