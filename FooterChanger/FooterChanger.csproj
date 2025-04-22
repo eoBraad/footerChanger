@@ -24,4 +24,8 @@
       </None>
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Spire.Doc" Version="13.3.7" />
+    </ItemGroup>
+
 </Project>
