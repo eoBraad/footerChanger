@@ -1,4 +1,6 @@
-﻿namespace FooterChanger;
+﻿using FooterChanger.Helpers;
+
+namespace FooterChanger;
 
 partial class HomeScreen
 {
@@ -37,11 +39,13 @@ partial class HomeScreen
         // _treeView
         // 
         _treeView.BackColor = System.Drawing.Color.FromArgb(((int)((byte)177)), ((int)((byte)161)), ((int)((byte)204)));
+        _treeView.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)0));
         _treeView.Location = new System.Drawing.Point(14, 70);
         _treeView.Name = "_treeView";
         _treeView.Size = new System.Drawing.Size(264, 599);
         _treeView.TabIndex = 0;
         _treeView.AfterSelect += _treeView_AfterSelect;
+        _treeView.AddBorderRadious(20);
         // 
         // changeFolder
         // 
@@ -51,13 +55,16 @@ partial class HomeScreen
         changeFolder.FlatAppearance.BorderSize = 0;
         changeFolder.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)((byte)177)), ((int)((byte)161)), ((int)((byte)204)));
         changeFolder.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)((byte)177)), ((int)((byte)161)), ((int)((byte)204)));
+        changeFolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
         changeFolder.Font = new System.Drawing.Font("Segoe UI", 7.2000003F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)0));
+        changeFolder.ForeColor = System.Drawing.Color.WhiteSmoke;
         changeFolder.Location = new System.Drawing.Point(14, 16);
         changeFolder.Name = "changeFolder";
         changeFolder.Size = new System.Drawing.Size(157, 35);
         changeFolder.TabIndex = 1;
         changeFolder.Text = "Alterar Diretório";
         changeFolder.UseVisualStyleBackColor = false;
+        changeFolder.AddBorderRadious(20);
         changeFolder.Click += changeFolder_Click;
         // 
         // HomeScreen
