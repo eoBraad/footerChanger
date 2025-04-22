@@ -122,4 +122,19 @@ public partial class HomeScreen : Form
             LoadDirectory(savedPath);
         }
     }
+
+    private void label1_Click(object sender, EventArgs e)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    private void label5_Click(object sender, EventArgs e)
+    {
+        throw new System.NotImplementedException();
+    }
 }
