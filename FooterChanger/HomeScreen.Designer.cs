@@ -45,6 +45,8 @@ partial class HomeScreen
         saveButton = new Button();
         selectedItem = new Label();
         selectedFilePath = new Label();
+        passwordInput = new TextBox();
+        label4 = new Label();
         SuspendLayout();
         // 
         // _treeView
@@ -123,7 +125,7 @@ partial class HomeScreen
         // 
         label2.Font = new Font("Segoe UI", 7.8F);
         label2.ForeColor = Color.WhiteSmoke;
-        label2.Location = new Point(388, 229);
+        label2.Location = new Point(388, 228);
         label2.Margin = new Padding(2, 0, 2, 0);
         label2.Name = "label2";
         label2.Size = new Size(51, 25);
@@ -133,7 +135,7 @@ partial class HomeScreen
         // pagina1Input
         // 
         pagina1Input.Font = new Font("Segoe UI", 10.8F);
-        pagina1Input.Location = new Point(390, 256);
+        pagina1Input.Location = new Point(388, 255);
         pagina1Input.Margin = new Padding(2);
         pagina1Input.Name = "pagina1Input";
         pagina1Input.Size = new Size(116, 31);
@@ -204,11 +206,33 @@ partial class HomeScreen
         selectedFilePath.TabIndex = 15;
         selectedFilePath.Visible = false;
         // 
+        // passwordInput
+        // 
+        passwordInput.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        passwordInput.Location = new Point(388, 402);
+        passwordInput.Name = "passwordInput";
+        passwordInput.Size = new Size(189, 30);
+        passwordInput.TabIndex = 16;
+        passwordInput.Visible = false;
+        // 
+        // label4
+        // 
+        label4.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        label4.ForeColor = Color.WhiteSmoke;
+        label4.Location = new Point(388, 375);
+        label4.Name = "label4";
+        label4.Size = new Size(72, 24);
+        label4.TabIndex = 17;
+        label4.Text = "Password";
+        label4.Visible = false;
+        // 
         // HomeScreen
         // 
         AutoScaleMode = AutoScaleMode.None;
         BackColor = Color.FromArgb(107, 75, 151);
         ClientSize = new Size(1230, 705);
+        Controls.Add(label4);
+        Controls.Add(passwordInput);
         Controls.Add(selectedFilePath);
         Controls.Add(selectedItem);
         Controls.Add(saveButton);
@@ -231,6 +255,10 @@ partial class HomeScreen
         ResumeLayout(false);
         PerformLayout();
     }
+
+    private System.Windows.Forms.Label label4;
+
+    private System.Windows.Forms.TextBox passwordInput;
 
     private System.Windows.Forms.Label selectedFilePath;
 

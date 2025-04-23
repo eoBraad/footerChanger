@@ -1,27 +1,25 @@
 using System.Drawing.Printing;
 using FooterChanger.Helpers;
 using Spire.Doc;
-using Spire.Doc.Documents;
-using System.Drawing.Printing;
 
 
 namespace FooterChanger;
 
 public partial class HomeScreen : Form
 {
-    private System.Windows.Forms.TreeView _treeView;
+    private TreeView _treeView;
 
     public HomeScreen()
     {
         InitializeComponent();
         _treeView!.BeforeExpand += _treeView_BeforeExpand!;
         _treeView!.AfterSelect += _treeView_AfterSelect!;
-
     }
 
     private void HomeScreen_Load(object sender, EventArgs e)
     {
         var savedPath = Properties.Settings.Default.DefaultDirectory;
+        var passwords = Properties.Settings.Default.Passwords;
 
         if (!Directory.Exists(savedPath) && string.IsNullOrEmpty(savedPath))
         {
@@ -38,6 +36,12 @@ public partial class HomeScreen : Form
         else
         {
             LoadDirectory(savedPath);
+        }
+
+        if (string.IsNullOrEmpty(passwords))
+        {
+            label4.Visible = true;
+            passwordInput.Visible = true;
         }
 
         LoadPrinters();
@@ -153,54 +157,50 @@ public partial class HomeScreen : Form
             printInput.SelectedItem = defaultPrinter;
     }
 
-
-    private void PrintWithFICReplacement(string filePath)
-    {
-        // 1. Carrega o documento
-        Document document = new Document();
-        document.LoadFromFile(filePath);
-
-        // 2. Substitui o texto
-        string ficValue = ficInput.Text.Trim();
-        document.Replace("#FIC", ficValue, true, true);
-
-        // 3. Define a impressora selecionada
-        string selectedPrinter = printInput.SelectedItem?.ToString();
-        if (string.IsNullOrEmpty(selectedPrinter))
-        {
-            MessageBox.Show("Selecione uma impressora.");
-            return;
-        }
-
-        // 4. Configura a impressão
-        PrintDocument printDoc = document.PrintDocument;
-        printDoc.PrinterSettings.PrinterName = selectedPrinter;
-
-        // 5. Imprime
-        try
-        {
-            printDoc.Print();
-            MessageBox.Show("Documento enviado para a impressora.");
-        }
-        catch (Exception ex)
-        {
-            MessageBox.Show($"Erro ao imprimir: {ex.Message}");
-        }
-    }
-
     private void SaveAndPrint_click(object sender, EventArgs e)
     {
+
+        var passwords = PasswordsController();
+
         if (!string.IsNullOrEmpty(selectedFilePath.Text) && !(selectedFilePath.Text.Contains(".doc") || selectedFilePath.Text.Contains(".docx")))
         {
             MessageBox.Show("Selecione um arquivo valido");
         }
-        
-        Document document = new Document();
-        document.LoadFromFile(selectedFilePath.Text);
 
-        // 2. Substitui o texto
-        string ficValue = ficInput.Text.Trim();
-        document.Replace("#FIC", ficValue, true, true);
-        document.SaveToFile(selectedFilePath.Text);
+        if (string.IsNullOrEmpty(ficInput.Text))
+        {
+            MessageBox.Show("Preencha o campo FIC");
+        }
+
+        foreach (var password in passwords)
+        {
+            DocEditorHelper.ChangeFooter(selectedFilePath.Text, "#FIC", ficInput.Text, password);
+        }
+    }
+
+    private List<string> PasswordsController()
+    {
+        var passwords = Properties.Settings.Default.Passwords;
+
+        if (string.IsNullOrEmpty(passwords) && !string.IsNullOrEmpty(passwordInput.Text))
+        {
+            passwords = passwordInput.Text + ",";
+            Properties.Settings.Default.Passwords = passwords;
+            Properties.Settings.Default.Save();
+        }
+        else if (!string.IsNullOrEmpty(passwords) && !string.IsNullOrEmpty(passwordInput.Text))
+        {
+            passwords = $"{passwords},{passwordInput.Text}";
+            Properties.Settings.Default.Passwords = passwords;
+            Properties.Settings.Default.Save();
+        }
+
+        var passwordList = Properties.Settings.Default.Passwords
+                                                        .Split(",")
+                                                        .Select(s => s.Trim())
+                                                        .Where(s => !string.IsNullOrEmpty(s))
+                                                        .ToList();
+
+        return passwordList;
     }
 }
