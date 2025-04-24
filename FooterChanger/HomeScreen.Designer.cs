@@ -31,6 +31,8 @@ partial class HomeScreen
     /// </summary>
     private void InitializeComponent()
     {
+        DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+        DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
         _treeView = new TreeView();
         changeFolder = new Button();
         printInput = new ComboBox();
@@ -47,6 +49,8 @@ partial class HomeScreen
         selectedFilePath = new Label();
         passwordInput = new TextBox();
         label4 = new Label();
+        dataGridView1 = new DataGridView();
+        ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
         SuspendLayout();
         // 
         // _treeView
@@ -185,6 +189,7 @@ partial class HomeScreen
         saveButton.TabIndex = 13;
         saveButton.Text = "Salvar";
         saveButton.UseVisualStyleBackColor = true;
+        saveButton.Click += Save_click;
         // 
         // selectedItem
         // 
@@ -199,7 +204,7 @@ partial class HomeScreen
         // selectedFilePath
         // 
         selectedFilePath.ForeColor = Color.WhiteSmoke;
-        selectedFilePath.Location = new Point(388, 455);
+        selectedFilePath.Location = new Point(1025, 429);
         selectedFilePath.Margin = new Padding(2, 0, 2, 0);
         selectedFilePath.Name = "selectedFilePath";
         selectedFilePath.Size = new Size(193, 12);
@@ -226,11 +231,44 @@ partial class HomeScreen
         label4.Text = "Password";
         label4.Visible = false;
         // 
+        // dataGridView1
+        // 
+        dataGridView1.BackgroundColor = Color.WhiteSmoke;
+        dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+        dataGridViewCellStyle1.BackColor = SystemColors.Control;
+        dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+        dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+        dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+        dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+        dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+        dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+        dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+        dataGridViewCellStyle2.BackColor = SystemColors.Window;
+        dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+        dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+        dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+        dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+        dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
+        dataGridView1.Location = new Point(382, 457);
+        dataGridView1.Name = "dataGridView1";
+        dataGridView1.RowHeadersWidth = 51;
+        dataGridView1.Size = new Size(836, 236);
+        dataGridView1.TabIndex = 18;
+        dataGridView1.ReadOnly = true;
+        dataGridView1.AllowUserToAddRows = false;
+        dataGridView1.AllowUserToDeleteRows = false;
+        dataGridView1.AllowUserToResizeRows = false;
+        dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+        dataGridView1.MultiSelect = false;
+        // 
         // HomeScreen
         // 
         AutoScaleMode = AutoScaleMode.None;
         BackColor = Color.FromArgb(107, 75, 151);
         ClientSize = new Size(1230, 705);
+        Controls.Add(dataGridView1);
         Controls.Add(label4);
         Controls.Add(passwordInput);
         Controls.Add(selectedFilePath);
@@ -252,6 +290,7 @@ partial class HomeScreen
         Name = "HomeScreen";
         Text = "Footer Changer";
         Load += HomeScreen_Load;
+        ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
         ResumeLayout(false);
         PerformLayout();
     }
@@ -282,4 +321,6 @@ partial class HomeScreen
     private System.Windows.Forms.Button changeFolder;
 
     #endregion
+
+    private DataGridView dataGridView1;
 }

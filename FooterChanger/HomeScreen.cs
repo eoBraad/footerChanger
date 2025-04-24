@@ -1,5 +1,7 @@
+using System.ComponentModel;
 using System.Drawing.Printing;
 using FooterChanger.Helpers;
+using FooterChanger.Structs;
 using Spire.Doc;
 
 
@@ -8,6 +10,7 @@ namespace FooterChanger;
 public partial class HomeScreen : Form
 {
     private TreeView _treeView;
+    private readonly BindingList<CachedModifications> _modifications = [];
 
     public HomeScreen()
     {
@@ -21,6 +24,10 @@ public partial class HomeScreen : Form
         var savedPath = Properties.Settings.Default.DefaultDirectory;
         var passwords = Properties.Settings.Default.Passwords;
 
+        // Configurações do DataGridView
+        dataGridView1.AutoGenerateColumns = true;
+        dataGridView1.DataSource = _modifications;
+
         if (!Directory.Exists(savedPath) && string.IsNullOrEmpty(savedPath))
         {
             using var dialog = new FolderBrowserDialog();
@@ -30,7 +37,6 @@ public partial class HomeScreen : Form
                 Properties.Settings.Default.Save();
                 savedPath = dialog.SelectedPath;
                 LoadDirectory(savedPath);
-
             }
         }
         else
@@ -68,8 +74,11 @@ public partial class HomeScreen : Form
     private void _treeView_AfterSelect(object sender, TreeViewEventArgs e)
     {
         var path = e.Node?.Tag?.ToString();
-        selectedItem.Text = Path.GetFileName(path);
-        selectedFilePath.Text = path;
+        if (path!.Contains(".doc") || path.Contains(".docx"))
+        {
+            selectedItem.Text = Path.GetFileName(path);
+            selectedFilePath.Text = path;
+        }
     }
 
     private void _treeView_BeforeExpand(object sender, TreeViewCancelEventArgs e)
@@ -159,22 +168,91 @@ public partial class HomeScreen : Form
 
     private void SaveAndPrint_click(object sender, EventArgs e)
     {
-
         var passwords = PasswordsController();
 
-        if (!string.IsNullOrEmpty(selectedFilePath.Text) && !(selectedFilePath.Text.Contains(".doc") || selectedFilePath.Text.Contains(".docx")))
+        if (string.IsNullOrEmpty(pagina1Input.Text) || int.TryParse(pagina1Input.Text, out _))
+        {
+            MessageBox.Show("Insira um numero de inicio");
+            return;
+        }
+        
+        if (string.IsNullOrEmpty(pagina2Input.Text) || int.TryParse(pagina2Input.Text, out _))
+        {
+            MessageBox.Show("Insira um numero de final");
+            return;
+        }
+
+        if (!string.IsNullOrEmpty(selectedFilePath.Text) &&
+            !(selectedFilePath.Text.Contains(".doc") || selectedFilePath.Text.Contains(".docx")))
         {
             MessageBox.Show("Selecione um arquivo valido");
+            return;
         }
 
         if (string.IsNullOrEmpty(ficInput.Text))
         {
             MessageBox.Show("Preencha o campo FIC");
+            return;
         }
 
-        foreach (var password in passwords)
+        try
         {
-            DocEditorHelper.ChangeFooter(selectedFilePath.Text, "#FIC", ficInput.Text, password);
+            DocEditorHelper.ChangeFooter(selectedFilePath.Text, ficInput.Text, passwords, true, true, printInput.Text, int.Parse(pagina1Input.Text), int.Parse(pagina2Input.Text), ShowPassword);
+            
+            _modifications.Add(new CachedModifications
+            {
+                Data = DateTime.Now,
+                FicValue = ficInput.Text,
+                Filename = selectedItem.Text,
+                Path = selectedFilePath.Text,
+                PageEnd = 1,
+                PageInit = 1
+            });
+        }
+        catch (Exception exception)
+        {
+            MessageBox.Show($"{exception.Message}", "Erro ao salvar");
+        }
+
+    }
+
+    private void Save_click(object sender, EventArgs e)
+    {
+        var passwords = PasswordsController();
+
+        if (string.IsNullOrEmpty(selectedFilePath.Text) &&
+            !(selectedFilePath.Text.Contains(".doc") || selectedFilePath.Text.Contains(".docx")))
+        {
+            MessageBox.Show("Selecione um arquivo valido");
+            return;
+        }
+
+        if (string.IsNullOrEmpty(ficInput.Text))
+        {
+            MessageBox.Show("Preencha o campo FIC");
+            return;
+        }
+        
+        try
+        {
+            DocEditorHelper.ChangeFooter(selectedFilePath.Text, ficInput.Text, passwords, true, false, "",
+                int.Parse(pagina1Input.Text), int.Parse(pagina2Input.Text),
+                ShowPassword);
+
+
+            _modifications.Add(new CachedModifications
+            {
+                Data = DateTime.Now,
+                FicValue = ficInput.Text,
+                Filename = selectedItem.Text,
+                Path = selectedFilePath.Text,
+                PageEnd = 1,
+                PageInit = 1
+            });
+        }
+        catch (Exception exception)
+        {
+            MessageBox.Show($"{exception.Message}", "Erro ao salvar");
         }
     }
 
@@ -194,13 +272,22 @@ public partial class HomeScreen : Form
             Properties.Settings.Default.Passwords = passwords;
             Properties.Settings.Default.Save();
         }
-
+        
         var passwordList = Properties.Settings.Default.Passwords
-                                                        .Split(",")
-                                                        .Select(s => s.Trim())
-                                                        .Where(s => !string.IsNullOrEmpty(s))
-                                                        .ToList();
+            .Split(",")
+            .Select(s => s.Trim())
+            .Where(s => !string.IsNullOrEmpty(s))
+            .ToList();
 
+        label4.Visible = false;
+        passwordInput.Visible = false;
+        
         return passwordList;
+    }
+
+    public void ShowPassword()
+    {
+        passwordInput.Visible = true;
+        label4.Visible = true;
     }
 }
