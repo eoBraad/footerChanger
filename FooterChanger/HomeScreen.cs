@@ -175,7 +175,7 @@ public partial class HomeScreen : Form
             MessageBox.Show("Insira um numero de inicio");
             return;
         }
-        
+
         if (string.IsNullOrEmpty(pagina2Input.Text) || int.TryParse(pagina2Input.Text, out _))
         {
             MessageBox.Show("Insira um numero de final");
@@ -198,7 +198,7 @@ public partial class HomeScreen : Form
         try
         {
             DocEditorHelper.ChangeFooter(selectedFilePath.Text, ficInput.Text, passwords, true, true, printInput.Text, int.Parse(pagina1Input.Text), int.Parse(pagina2Input.Text), ShowPassword);
-            
+
             _modifications.Add(new CachedModifications
             {
                 Data = DateTime.Now,
@@ -232,7 +232,7 @@ public partial class HomeScreen : Form
             MessageBox.Show("Preencha o campo FIC");
             return;
         }
-        
+
         try
         {
             DocEditorHelper.ChangeFooter(selectedFilePath.Text, ficInput.Text, passwords, true, false, "",
@@ -272,7 +272,7 @@ public partial class HomeScreen : Form
             Properties.Settings.Default.Passwords = passwords;
             Properties.Settings.Default.Save();
         }
-        
+
         var passwordList = Properties.Settings.Default.Passwords
             .Split(",")
             .Select(s => s.Trim())
@@ -281,7 +281,7 @@ public partial class HomeScreen : Form
 
         label4.Visible = false;
         passwordInput.Visible = false;
-        
+
         return passwordList;
     }
 
@@ -289,5 +289,10 @@ public partial class HomeScreen : Form
     {
         passwordInput.Visible = true;
         label4.Visible = true;
+    }
+
+    private void filterInput_TextChanged(object sender, EventArgs e)
+    {
+
     }
 }

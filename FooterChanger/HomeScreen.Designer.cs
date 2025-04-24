@@ -31,8 +31,8 @@ partial class HomeScreen
     /// </summary>
     private void InitializeComponent()
     {
-        DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-        DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+        DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+        DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
         _treeView = new TreeView();
         changeFolder = new Button();
         printInput = new ComboBox();
@@ -50,12 +50,12 @@ partial class HomeScreen
         passwordInput = new TextBox();
         label4 = new Label();
         dataGridView1 = new DataGridView();
-        filterInput = new TextBox();
-        label5 = new Label();
         ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
         SuspendLayout();
-
+        // 
         // _treeView
+        // 
+        _treeView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
         _treeView.BackColor = Color.FromArgb(177, 161, 204);
         _treeView.Font = new Font("Segoe UI", 10.2F);
         _treeView.Location = new Point(11, 61);
@@ -63,9 +63,9 @@ partial class HomeScreen
         _treeView.Size = new Size(355, 633);
         _treeView.TabIndex = 0;
         _treeView.AfterSelect += _treeView_AfterSelect;
-        _treeView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-
+        // 
         // changeFolder
+        // 
         changeFolder.BackColor = Color.FromArgb(177, 161, 204);
         changeFolder.Cursor = Cursors.Hand;
         changeFolder.FlatStyle = FlatStyle.Flat;
@@ -78,16 +78,18 @@ partial class HomeScreen
         changeFolder.Text = "Alterar Diretório";
         changeFolder.UseVisualStyleBackColor = false;
         changeFolder.Click += changeFolder_Click;
-
+        // 
         // printInput
+        // 
         printInput.Font = new Font("Segoe UI", 10.8F);
         printInput.FormattingEnabled = true;
         printInput.Location = new Point(388, 193);
         printInput.Name = "printInput";
         printInput.Size = new Size(281, 33);
         printInput.TabIndex = 2;
-
+        // 
         // Impressora
+        // 
         Impressora.Font = new Font("Segoe UI", 7.8F);
         Impressora.ForeColor = Color.WhiteSmoke;
         Impressora.Location = new Point(388, 168);
@@ -95,8 +97,9 @@ partial class HomeScreen
         Impressora.Size = new Size(76, 23);
         Impressora.TabIndex = 3;
         Impressora.Text = "Impressora";
-
+        // 
         // label1
+        // 
         label1.Font = new Font("Segoe UI", 9F);
         label1.ForeColor = Color.WhiteSmoke;
         label1.Location = new Point(388, 105);
@@ -104,15 +107,17 @@ partial class HomeScreen
         label1.Size = new Size(36, 21);
         label1.TabIndex = 5;
         label1.Text = "FIC";
-
+        // 
         // ficInput
+        // 
         ficInput.Font = new Font("Segoe UI", 10.8F);
         ficInput.Location = new Point(388, 128);
         ficInput.Name = "ficInput";
         ficInput.Size = new Size(281, 31);
         ficInput.TabIndex = 6;
-
+        // 
         // label2
+        // 
         label2.Font = new Font("Segoe UI", 7.8F);
         label2.ForeColor = Color.WhiteSmoke;
         label2.Location = new Point(388, 228);
@@ -120,22 +125,25 @@ partial class HomeScreen
         label2.Size = new Size(51, 25);
         label2.TabIndex = 7;
         label2.Text = "Página";
-
+        // 
         // pagina1Input
+        // 
         pagina1Input.Font = new Font("Segoe UI", 10.8F);
         pagina1Input.Location = new Point(388, 255);
         pagina1Input.Name = "pagina1Input";
         pagina1Input.Size = new Size(116, 31);
         pagina1Input.TabIndex = 8;
-
+        // 
         // pagina2Input
+        // 
         pagina2Input.Font = new Font("Segoe UI", 10.8F);
         pagina2Input.Location = new Point(544, 256);
         pagina2Input.Name = "pagina2Input";
         pagina2Input.Size = new Size(125, 31);
         pagina2Input.TabIndex = 9;
-
+        // 
         // label3
+        // 
         label3.Font = new Font("Segoe UI", 7.8F);
         label3.ForeColor = Color.WhiteSmoke;
         label3.Location = new Point(510, 265);
@@ -143,8 +151,9 @@ partial class HomeScreen
         label3.Size = new Size(30, 21);
         label3.TabIndex = 10;
         label3.Text = "Até";
-
+        // 
         // SaveAndPrint
+        // 
         SaveAndPrint.Font = new Font("Segoe UI", 7.8F);
         SaveAndPrint.Location = new Point(544, 307);
         SaveAndPrint.Name = "SaveAndPrint";
@@ -153,8 +162,9 @@ partial class HomeScreen
         SaveAndPrint.Text = "Salvar e Imprimir";
         SaveAndPrint.UseVisualStyleBackColor = true;
         SaveAndPrint.Click += SaveAndPrint_click;
-
+        // 
         // saveButton
+        // 
         saveButton.Font = new Font("Segoe UI", 7.8F);
         saveButton.Location = new Point(401, 307);
         saveButton.Name = "saveButton";
@@ -163,32 +173,36 @@ partial class HomeScreen
         saveButton.Text = "Salvar";
         saveButton.UseVisualStyleBackColor = true;
         saveButton.Click += Save_click;
-
+        // 
         // selectedItem
+        // 
         selectedItem.Font = new Font("Segoe UI", 10.2F);
         selectedItem.ForeColor = Color.WhiteSmoke;
         selectedItem.Location = new Point(388, 61);
         selectedItem.Name = "selectedItem";
         selectedItem.Size = new Size(447, 28);
         selectedItem.TabIndex = 14;
-
+        // 
         // selectedFilePath
+        // 
         selectedFilePath.ForeColor = Color.WhiteSmoke;
         selectedFilePath.Location = new Point(1025, 429);
         selectedFilePath.Name = "selectedFilePath";
         selectedFilePath.Size = new Size(193, 12);
         selectedFilePath.TabIndex = 15;
         selectedFilePath.Visible = false;
-
+        // 
         // passwordInput
+        // 
         passwordInput.Font = new Font("Segoe UI", 10.2F);
         passwordInput.Location = new Point(388, 402);
         passwordInput.Name = "passwordInput";
         passwordInput.Size = new Size(189, 30);
         passwordInput.TabIndex = 16;
         passwordInput.Visible = false;
-
+        // 
         // label4
+        // 
         label4.Font = new Font("Segoe UI", 9F);
         label4.ForeColor = Color.WhiteSmoke;
         label4.Location = new Point(388, 375);
@@ -197,60 +211,45 @@ partial class HomeScreen
         label4.TabIndex = 17;
         label4.Text = "Password";
         label4.Visible = false;
-
+        // 
         // dataGridView1
-        dataGridView1.BackgroundColor = Color.WhiteSmoke;
-        dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-        dataGridViewCellStyle1.BackColor = SystemColors.Control;
-        dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
-        dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-        dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-        dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-        dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-        dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-        dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-        dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-        dataGridViewCellStyle2.BackColor = SystemColors.Window;
-        dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
-        dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
-        dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-        dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-        dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-        dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
-        dataGridView1.Location = new Point(382, 457);
-        dataGridView1.Name = "dataGridView1";
-        dataGridView1.Size = new Size(836, 236);
-        dataGridView1.TabIndex = 18;
-        dataGridView1.ReadOnly = true;
+        // 
         dataGridView1.AllowUserToAddRows = false;
         dataGridView1.AllowUserToDeleteRows = false;
         dataGridView1.AllowUserToResizeRows = false;
-        dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-        dataGridView1.MultiSelect = false;
         dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-
-        // filterInput
-        filterInput.Font = new Font("Segoe UI", 10.2F);
-        filterInput.Location = new Point(388, 360);
-        filterInput.Name = "filterInput";
-        filterInput.Size = new Size(281, 30);
-        filterInput.TabIndex = 19;
-
-        // label5
-        label5.Font = new Font("Segoe UI", 9F);
-        label5.ForeColor = Color.WhiteSmoke;
-        label5.Location = new Point(388, 335);
-        label5.Name = "label5";
-        label5.Size = new Size(109, 24);
-        label5.TabIndex = 20;
-        label5.Text = "Filtrar Arquivos";
-
+        dataGridView1.BackgroundColor = Color.WhiteSmoke;
+        dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+        dataGridViewCellStyle3.BackColor = SystemColors.Control;
+        dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
+        dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+        dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+        dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+        dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+        dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+        dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+        dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+        dataGridViewCellStyle4.BackColor = SystemColors.Window;
+        dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
+        dataGridViewCellStyle4.ForeColor = SystemColors.ControlText;
+        dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
+        dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+        dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+        dataGridView1.DefaultCellStyle = dataGridViewCellStyle4;
+        dataGridView1.Location = new Point(382, 457);
+        dataGridView1.MultiSelect = false;
+        dataGridView1.Name = "dataGridView1";
+        dataGridView1.ReadOnly = true;
+        dataGridView1.RowHeadersWidth = 51;
+        dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+        dataGridView1.Size = new Size(836, 236);
+        dataGridView1.TabIndex = 18;
+        // 
         // HomeScreen
+        // 
         AutoScaleMode = AutoScaleMode.None;
         BackColor = Color.FromArgb(107, 75, 151);
         ClientSize = new Size(1230, 705);
-        Controls.Add(label5);
-        Controls.Add(filterInput);
         Controls.Add(dataGridView1);
         Controls.Add(label4);
         Controls.Add(passwordInput);
@@ -293,6 +292,4 @@ partial class HomeScreen
     private System.Windows.Forms.ComboBox printInput;
     private System.Windows.Forms.Button changeFolder;
     private DataGridView dataGridView1;
-    private TextBox filterInput;
-    private Label label5;
 }
