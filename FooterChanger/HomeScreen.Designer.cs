@@ -4,6 +4,10 @@ namespace FooterChanger;
 
 partial class HomeScreen
 {
+    // Este arquivo contém o código gerado automaticamente pelo designer do Windows Forms.
+    // Ele define os componentes visuais e suas propriedades.
+    // Não modifique este arquivo diretamente, pois alterações podem ser sobrescritas pelo designer.
+
     /// <summary>
     ///  Required designer variable.
     /// </summary>
