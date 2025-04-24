@@ -278,9 +278,16 @@ public partial class HomeScreen : Form
             .Select(s => s.Trim())
             .Where(s => !string.IsNullOrEmpty(s))
             .ToList();
-
-        label4.Visible = false;
-        passwordInput.Visible = false;
+        if (passwordList.Count > 0)
+        {
+            passwordInput.Visible = false;
+            label4.Visible = false;
+        }
+        else
+        {
+            passwordInput.Visible = true;
+            label4.Visible = true;
+        }
         
         return passwordList;
     }
