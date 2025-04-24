@@ -170,13 +170,13 @@ public partial class HomeScreen : Form
     {
         var passwords = PasswordsController();
 
-        if (string.IsNullOrEmpty(pagina1Input.Text) || int.TryParse(pagina1Input.Text, out _))
+        if (string.IsNullOrEmpty(pagina1Input.Text) || !int.TryParse(pagina1Input.Text, out _))
         {
             MessageBox.Show("Insira um numero de inicio");
             return;
         }
         
-        if (string.IsNullOrEmpty(pagina2Input.Text) || int.TryParse(pagina2Input.Text, out _))
+        if (string.IsNullOrEmpty(pagina2Input.Text) || !int.TryParse(pagina2Input.Text, out _))
         {
             MessageBox.Show("Insira um numero de final");
             return;
@@ -232,6 +232,19 @@ public partial class HomeScreen : Form
             MessageBox.Show("Preencha o campo FIC");
             return;
         }
+        
+        if (string.IsNullOrEmpty(pagina1Input.Text) || !int.TryParse(pagina1Input.Text, out _))
+        {
+            MessageBox.Show("Insira um número de início válido");
+            return;
+        }
+
+        if (string.IsNullOrEmpty(pagina2Input.Text) || !int.TryParse(pagina2Input.Text, out _))
+        {
+            MessageBox.Show("Insira um número de final válido");
+            return;
+        }
+    
         
         try
         {
