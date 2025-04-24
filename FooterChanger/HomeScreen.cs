@@ -12,6 +12,9 @@ public partial class HomeScreen : Form
     private TreeView _treeView;
     private readonly BindingList<CachedModifications> _modifications = [];
 
+    /// <summary>
+    /// Construtor da tela inicial. Inicializa os componentes e configura eventos do TreeView.
+    /// </summary>
     public HomeScreen()
     {
         InitializeComponent();
@@ -19,6 +22,9 @@ public partial class HomeScreen : Form
         _treeView!.AfterSelect += _treeView_AfterSelect!;
     }
 
+    /// <summary>
+    /// Evento disparado ao carregar a tela inicial. Configura o DataGridView, carrega o diretório padrão e as impressoras.
+    /// </summary>
     private void HomeScreen_Load(object sender, EventArgs e)
     {
         var savedPath = Properties.Settings.Default.DefaultDirectory;
@@ -53,6 +59,10 @@ public partial class HomeScreen : Form
         LoadPrinters();
     }
 
+    /// <summary>
+    /// Carrega o diretório especificado no TreeView.
+    /// </summary>
+    /// <param name="path">Caminho do diretório a ser carregado.</param>
     private void LoadDirectory(string path)
     {
         try
@@ -71,6 +81,9 @@ public partial class HomeScreen : Form
         }
     }
 
+    /// <summary>
+    /// Evento disparado ao selecionar um nó no TreeView. Atualiza os campos com o arquivo selecionado.
+    /// </summary>
     private void _treeView_AfterSelect(object sender, TreeViewEventArgs e)
     {
         var path = e.Node?.Tag?.ToString();
@@ -81,6 +94,9 @@ public partial class HomeScreen : Form
         }
     }
 
+    /// <summary>
+    /// Evento disparado antes de expandir um nó no TreeView. Carrega os arquivos e subpastas do nó.
+    /// </summary>
     private void _treeView_BeforeExpand(object sender, TreeViewCancelEventArgs e)
     {
         try
@@ -95,6 +111,10 @@ public partial class HomeScreen : Form
         }
     }
 
+    /// <summary>
+    /// Adiciona arquivos e subpastas ao nó especificado no TreeView.
+    /// </summary>
+    /// <param name="node">Nó do TreeView onde os arquivos e subpastas serão adicionados.</param>
     private void AddFiles(TreeNode node)
     {
         var path = node.Tag!.ToString();
@@ -139,6 +159,9 @@ public partial class HomeScreen : Form
         }
     }
 
+    /// <summary>
+    /// Evento disparado ao clicar no botão para alterar o diretório. Atualiza o diretório padrão.
+    /// </summary>
     private void changeFolder_Click(object sender, EventArgs e)
     {
         using var dialog = new FolderBrowserDialog();
@@ -151,6 +174,9 @@ public partial class HomeScreen : Form
         }
     }
 
+    /// <summary>
+    /// Carrega as impressoras instaladas no sistema e define a impressora padrão.
+    /// </summary>
     private void LoadPrinters()
     {
         printInput.Items.Clear();
@@ -166,6 +192,9 @@ public partial class HomeScreen : Form
             printInput.SelectedItem = defaultPrinter;
     }
 
+    /// <summary>
+    /// Evento disparado ao clicar no botão "Salvar e Imprimir". Valida os campos e salva o rodapé no documento.
+    /// </summary>
     private void SaveAndPrint_click(object sender, EventArgs e)
     {
         var passwords = PasswordsController();
@@ -216,6 +245,9 @@ public partial class HomeScreen : Form
 
     }
 
+    /// <summary>
+    /// Evento disparado ao clicar no botão "Salvar". Valida os campos e salva o rodapé no documento.
+    /// </summary>
     private void Save_click(object sender, EventArgs e)
     {
         var passwords = PasswordsController();
@@ -256,6 +288,10 @@ public partial class HomeScreen : Form
         }
     }
 
+    /// <summary>
+    /// Controla as senhas armazenadas e atualiza a lista de senhas, se necessário.
+    /// </summary>
+    /// <returns>Lista de senhas válidas.</returns>
     private List<string> PasswordsController()
     {
         var passwords = Properties.Settings.Default.Passwords;
@@ -285,6 +321,9 @@ public partial class HomeScreen : Form
         return passwordList;
     }
 
+    /// <summary>
+    /// Exibe os campos para inserção de senha na interface.
+    /// </summary>
     public void ShowPassword()
     {
         passwordInput.Visible = true;

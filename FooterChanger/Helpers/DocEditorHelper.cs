@@ -8,6 +8,18 @@ namespace FooterChanger.Helpers;
 
 public static class DocEditorHelper
 {
+    /// <summary>
+    /// Altera o rodapé de um documento Word, adicionando informações como FIC e número de página.
+    /// </summary>
+    /// <param name="selectedFilePath">Caminho do arquivo selecionado.</param>
+    /// <param name="ficValue">Valor do FIC a ser adicionado no rodapé.</param>
+    /// <param name="passwords">Lista de senhas para abrir o documento.</param>
+    /// <param name="save">Indica se o documento deve ser salvo após a alteração.</param>
+    /// <param name="print">Indica se o documento deve ser impresso após a alteração.</param>
+    /// <param name="printerName">Nome da impressora para impressão.</param>
+    /// <param name="inicio">Número da página inicial.</param>
+    /// <param name="fim">Número da página final.</param>
+    /// <param name="showPassword">Ação para exibir o campo de senha na interface.</param>
     public static void ChangeFooter(string selectedFilePath, string ficValue, List<string> passwords, bool save,
         bool print, string printerName, int inicio, int fim, Action showPassword)
     {
@@ -73,6 +85,12 @@ public static class DocEditorHelper
             PrintDocument(selectedFilePath, printerName, correctPassword);
     }
 
+    /// <summary>
+    /// Imprime o documento Word utilizando a impressora especificada.
+    /// </summary>
+    /// <param name="selectedFilePath">Caminho do arquivo selecionado.</param>
+    /// <param name="printerName">Nome da impressora para impressão.</param>
+    /// <param name="password">Senha para abrir o documento.</param>
     public static void PrintDocument(string selectedFilePath, string printerName, string password)
     {
         var document = new Document();
